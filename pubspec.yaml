@@ -35,3 +35,4 @@ flutter:
           weight: 700
   assets:
     - .env
+    
