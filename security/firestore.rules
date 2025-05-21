@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 認証済みユーザーは全てのドキュメントを読み取り可能
+    match /{document=**} {
+      allow read: if request.auth != null;
+      
+      // 書き込みは、例えば Google認証済みユーザーに限定する例
+      allow write: if request.auth.token.email_verified == true;
+    }
+  }
+}
